@@ -5,7 +5,7 @@ connection = mysql.createConnection({
     port: "3306",
     user: "Cecilia",
     password: process.env.SQL_PASS,
-    database: "todo"
+    database: "organizer-app"
 });
 
 module.exports = connection;

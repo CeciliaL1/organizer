@@ -1,11 +1,42 @@
 var express = require('express');
 var router = express.Router();
+const connection = require('../lib/conn')
 
 
-/* Get userId storageUnits*/
+/* Get ALL USERS*/
 
-router.get('/storageUnit/:userId', (req, res) => {
+router.get('/', (req, res) => {
 
+    connection.connect((err) => {
+        if (err) throw err;
+
+        let sql = 'SELECT * FROM users';
+
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+
+            console.log(result);
+            res.send(result);
+        })
+    });
+});
+
+/* get users with id */
+
+router.get('/', (req, res) => {
+
+    connection.connect((err) => {
+        if (err) throw err;
+
+        let sql = 'SELECT * FROM users';
+
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+
+            console.log(result);
+            res.send(result);
+        })
+    });
 });
 
 
