@@ -118,19 +118,28 @@ router.post('/add', (req, res) => {
                     res.json(result)
                 })
             }
-        })
+        });
 
-    
-
-
-
-    })
+    });
 
 });
 
 /* Delete user */
 
-router.delete('/delete/userId', (req, res) => {
+router.delete('/delete/:userId', (req, res) => {
+    let userID = req.params.userId
+    connection.connect((err) => {
+        if (err) throw err;
+
+        let sql = `UPDATE users SET deleted = 1 WHERE id = ?`;
+        let values = [userID]
+
+        connection.query(sql, values, (err, result) => {
+            if (err) throw err;
+            res.json(result)
+         
+        })
+    });
 
 });
 
