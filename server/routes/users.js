@@ -16,25 +16,26 @@ router.get('/', (req, res) => {
             if (err) throw err;
 
             console.log(result);
-            res.send(result);
+            res.json(result);
         })
     });
 });
 
 /* get users with id */
 
-router.get('/', (req, res) => {
+router.get('/:userId', (req, res) => {
+    let userID = req.params.userId
 
     connection.connect((err) => {
         if (err) throw err;
 
-        let sql = 'SELECT * FROM users';
+        let sql = `SELECT * FROM users WHERE id = ${userID}`;
 
         connection.query(sql, (err, result) => {
             if (err) throw err;
 
             console.log(result);
-            res.send(result);
+            res.json(result);
         })
     });
 });
